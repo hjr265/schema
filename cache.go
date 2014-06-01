@@ -164,7 +164,7 @@ func (c *cache) createField(field reflect.StructField, info *structInfo) {
 		}
 	}
 
-	info.fields[alias] = &fieldInfo{
+	info.fields[strings.ToLower(alias)] = &fieldInfo{
 		typ:  field.Type,
 		name: field.Name,
 		ss:   isSlice && isStruct,
@@ -178,7 +178,7 @@ type structInfo struct {
 }
 
 func (i *structInfo) get(alias string) *fieldInfo {
-	return i.fields[alias]
+	return i.fields[strings.ToLower(alias)]
 }
 
 type fieldInfo struct {
